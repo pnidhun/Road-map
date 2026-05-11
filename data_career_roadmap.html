@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Career Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      color: white;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    .tab:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .tab.active {
+      background: white;
+      color: #667eea;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .content {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #666;
+      background: #f8f9fa;
+      padding: 8px 12px;
+      border-radius: 20px;
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .phase {
+      border-radius: 15px;
+      border: 1px solid #e9ecef;
+      background: white;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    .phase:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+      transition: background 0.3s ease;
+    }
+    .phase-header:hover {
+      background: linear-gradient(135deg, #f0f4ff 0%, #e0eaff 100%);
+    }
+    .phase-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .phase-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+      flex: 1;
+    }
+    .phase-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 500;
+      background: #28a745;
+      color: white;
+    }
+    .phase-arrow {
+      font-size: 16px;
+      color: #666;
+      transition: transform 0.3s ease;
+    }
+    .phase-arrow.open {
+      transform: rotate(90deg);
+    }
+    .phase-body {
+      padding: 0 20px 20px;
+      display: none;
+    }
+    .phase-body.open {
+      display: block;
+    }
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .skill-col h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .skill-pill {
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin: 4px 4px 4px 0;
+      display: inline-block;
+      background: #f8f9fa;
+      color: #333;
+      border: 1px solid #dee2e6;
+      transition: all 0.2s ease;
+    }
+    .skill-pill:hover {
+      transform: scale(1.05);
+    }
+    .skill-pill.hot {
+      background: #dc3545;
+      color: white;
+      border-color: #dc3545;
+    }
+    .skill-pill.core {
+      background: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+    .tip-box {
+      background: #f8f9ff;
+      border-radius: 10px;
+      padding: 15px 20px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+      border-left: 4px solid #667eea;
+    }
+    .tip-box b {
+      color: #333;
+      font-weight: 600;
+    }
+    .project-card, .role-card {
+      border: 1px solid #e9ecef;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+      background: white;
+      transition: all 0.3s ease;
+    }
+    .project-card:hover, .role-card:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+    .project-card h5, .role-card h5 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .project-card p, .role-card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+    .role-card .salary {
+      font-size: 14px;
+      color: #28a745;
+      font-weight: 600;
+      margin: 8px 0;
+    }
+    .progress-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: #e9ecef;
+      overflow: hidden;
+      margin: 10px 0 15px;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #28a745, #20c997);
+      transition: width 0.3s ease;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+      .header h1 {
+        font-size: 2rem;
+      }
+      .tabs {
+        flex-direction: column;
+        align-items: center;
+      }
+      .tab {
+        width: 200px;
+      }
+      .skill-grid {
+        grid-template-columns: 1fr;
+      }
+      .legend {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Data Career Roadmap</h1>
+      <p>Your personalized guide to becoming a data professional</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('roadmap')">Roadmap</button>
+      <button class="tab" onclick="showTab('projects')">Portfolio Projects</button>
+      <button class="tab" onclick="showTab('roles')">Target Roles & Salary</button>
+    </div>
+
+    <div id="tab-roadmap" class="content">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#4CAF50"></div>This summer (now)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2196F3"></div>Semester 3</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#9C27B0"></div>Semester 4 + job hunt</div>
+        <div class="legend-item"><span class="skill-pill hot" style="font-size:11px;padding:2px 8px;margin:0">🔥 high demand</span></div>
+        <div class="legend-item"><span class="skill-pill core" style="font-size:11px;padding:2px 8px;margin:0">core</span></div>
+      </div>
+
+      <div class="timeline" id="phases"></div>
+    </div>
+
+    <div id="tab-projects" class="content" style="display:none">
+      <div id="projects-list"></div>
+    </div>
+
+    <div id="tab-roles" class="content" style="display:none">
+      <div id="roles-list"></div>
+    </div>
+  </div>
+
+<script>
+const phases = [
+  {
+    id: 'p1', color: '#4CAF50', label: 'Now — Summer', tag: 'Start immediately', tagColor: 'success',
+    title: 'Phase 1: Build the foundation',
+    tracks: {
+      'SQL & databases': { skills: ['Advanced SQL', 'Window functions', 'CTEs', 'Query optimization'], hot: ['Advanced SQL'] },
+      'Python core': { skills: ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn'], hot: ['Pandas'] },
+      'Cloud basics': { skills: ['AWS S3 + IAM', 'or Azure basics', 'or GCP BigQuery'], hot: ['AWS S3 + IAM', 'or Azure basics', 'or GCP BigQuery'] },
+      'Version control': { skills: ['Git & GitHub', 'GitHub Actions CI/CD basics'], hot: [] },
+    },
+    tip: '<b>This summer is critical.</b> With your MSIS background, you likely know the theory — now build muscle memory. Complete the <b>Google Data Analytics Certificate</b> or <b>AWS Cloud Practitioner</b> exam (free prep via AWS Skill Builder). Target 1–2 hours of hands-on coding daily.',
+    progress: 15
+  },
+  {
+    id: 'p2', color: '#4CAF50', label: 'Now — Summer', tag: 'Start immediately', tagColor: 'success',
+    title: 'Phase 2: Analytics & BI track',
+    tracks: {
+      'Visualization': { skills: ['Tableau', 'Power BI', 'Looker basics'], hot: ['Tableau', 'Power BI'] },
+      'Statistics': { skills: ['A/B testing', 'Regression', 'Hypothesis testing', 'Statistical significance'], hot: ['A/B testing'] },
+      'Storytelling': { skills: ['Executive dashboards', 'KPI design', 'Business metrics framing'], hot: ['Executive dashboards'] },
+    },
+    tip: '<b>Tableau and Power BI are non-negotiable</b> for analytics roles. 87% of DA job postings in 2025 require one of these. Get Tableau Public certification — it\'s free and visible on your LinkedIn.',
+    progress: 10
+  },
+  {
+    id: 'p3', color: '#2196F3', label: 'Semester 3', tag: 'Fall 2025', tagColor: 'info',
+    title: 'Phase 3: Data engineering fundamentals',
+    tracks: {
+      'Pipelines & ETL': { skills: ['Apache Airflow', 'dbt (data build tool)', 'Fivetran basics', 'ETL vs ELT'], hot: ['Apache Airflow', 'dbt (data build tool)'] },
+      'Big data': { skills: ['Apache Spark', 'PySpark', 'Databricks', 'Delta Lake'], hot: ['Apache Spark', 'Databricks'] },
+      'Data warehousing': { skills: ['Snowflake', 'BigQuery', 'Redshift', 'Star schema design'], hot: ['Snowflake', 'BigQuery'] },
+      'Infrastructure': { skills: ['Docker', 'Kubernetes basics', 'Terraform intro'], hot: ['Docker'] },
+    },
+    tip: '<b>dbt is the #1 most-asked DE skill in 2025 job postings</b> — it barely existed 4 years ago. Snowflake and Databricks certifications look excellent on a resume and take 2–4 weeks to prep. Prioritize these over general cloud certs.',
+    progress: 0
+  },
+  {
+    id: 'p4', color: '#2196F3', label: 'Semester 3', tag: 'Fall 2025', tagColor: 'info',
+    title: 'Phase 4: Machine learning core',
+    tracks: {
+      'Supervised ML': { skills: ['Scikit-learn', 'XGBoost / LightGBM', 'Feature engineering', 'Cross-validation'], hot: ['XGBoost / LightGBM'] },
+      'Deep learning intro': { skills: ['PyTorch basics', 'Neural network architecture', 'Transfer learning'], hot: ['PyTorch basics'] },
+      'MLOps basics': { skills: ['MLflow tracking', 'Model versioning', 'Model serving APIs', 'FastAPI'], hot: ['MLflow tracking', 'FastAPI'] },
+      'Experiment tracking': { skills: ['Weights & Biases', 'Reproducible pipelines', 'Feature stores'], hot: [] },
+    },
+    tip: '<b>Don\'t skip MLOps.</b> Companies care far more about a deployed model than a 97% accuracy score. Show that you can take a model from notebook to production — this is the #1 differentiator companies report for ML candidates in 2025.',
+    progress: 0
+  },
+  {
+    id: 'p5', color: '#9C27B0', label: 'Semester 4', tag: 'Spring 2026', tagColor: 'warning',
+    title: 'Phase 5: AI / GenAI integration (2025–26 hot skill)',
+    tracks: {
+      'LLM tooling': { skills: ['LangChain / LlamaIndex', 'RAG pipelines', 'Prompt engineering', 'OpenAI API'], hot: ['LangChain / LlamaIndex', 'RAG pipelines'] },
+      'Vector databases': { skills: ['Pinecone', 'ChromaDB', 'Weaviate', 'Embeddings'], hot: ['Pinecone'] },
+      'AI in analytics': { skills: ['AI-powered dashboards', 'NL-to-SQL tools', 'Copilot for data'], hot: ['AI-powered dashboards'] },
+    },
+    tip: '<b>GenAI skills are now expected even for non-ML roles.</b> 62% of new DA/DE job postings in 2025 mention LLMs or AI tools. Build one RAG project and understand vector databases — this alone sets you apart from 80% of candidates.',
+    progress: 0
+  },
+  {
+    id: 'p6', color: '#9C27B0', label: 'Final stretch', tag: 'Job hunt mode', tagColor: 'danger',
+    title: 'Phase 6: Job-readiness & interview prep',
+    tracks: {
+      'Portfolio': { skills: ['3–4 end-to-end projects on GitHub', 'Deployed apps/dashboards', 'Case study writeups'], hot: [] },
+      'System design': { skills: ['Data warehouse design', 'Pipeline architecture', 'Scalability trade-offs'], hot: ['Data warehouse design'] },
+      'SQL interview prep': { skills: ['LeetCode Hard SQL', 'Window functions practice', 'DataLemur.com'], hot: ['LeetCode Hard SQL'] },
+      'Coding interviews': { skills: ['LeetCode Medium Python', 'Pandas interview questions', 'Take-home case studies'], hot: [] },
+      'Certifications': { skills: ['Snowflake SnowPro Core', 'Databricks Associate DE', 'dbt Analytics Engineer', 'AWS SAA (optional)'], hot: ['Snowflake SnowPro Core', 'Databricks Associate DE', 'dbt Analytics Engineer'] },
+    },
+    tip: '<b>OPT / CPT strategy:</b> Apply for OPT 90 days before graduation. Target companies with active H-1B sponsorship history (use myvisajobs.com). Prioritize Texas-based tech hubs (Austin, Dallas, Houston) plus remote roles at national firms — both have strong data hiring for 2026.',
+    progress: 0
+  },
+];
+
+const projects = [
+  { title: 'End-to-end ELT pipeline', desc: 'Ingest public data (e.g. NYC taxi or Airbnb listings) into Snowflake using Fivetran or custom Python, transform with dbt, visualize in Tableau or Power BI. Deploy Airflow to schedule daily runs.', tags: ['Python', 'dbt', 'Snowflake', 'Airflow', 'Tableau'] },
+  { title: 'ML churn prediction service', desc: 'Train an XGBoost model on e-commerce data, track experiments with MLflow, deploy as a REST API using FastAPI + Docker, host on AWS EC2 or Render. Write a README explaining every decision.', tags: ['XGBoost', 'MLflow', 'FastAPI', 'Docker', 'AWS'] },
+  { title: 'RAG-powered analytics chatbot', desc: 'Build a chatbot that answers business questions using your own dataset. Use LangChain + ChromaDB for retrieval, OpenAI API for generation, and a Streamlit front-end. This is your GenAI showpiece.', tags: ['LangChain', 'ChromaDB', 'OpenAI API', 'Streamlit'] },
+  { title: 'Streaming analytics dashboard', desc: 'Use Kafka or AWS Kinesis to simulate real-time events, process with PySpark Structured Streaming, write to Delta Lake, visualize in a live Grafana or Streamlit dashboard.', tags: ['Kafka', 'PySpark', 'Delta Lake', 'Grafana'] },
+];
+
+const roles = [
+  { title: 'Data Analyst', salary: '$70K–$95K (entry) · $95K–$130K (mid)', desc: 'Focus on SQL, Python, Tableau/Power BI, A/B testing, stakeholder communication. Highest volume of openings — excellent entry point. Companies: Meta, Walmart, Capital One, consulting firms.', match: 90 },
+  { title: 'Data Engineer', salary: '$90K–$115K (entry) · $120K–$160K (mid)', desc: 'Pipelines, Airflow, dbt, Spark, Snowflake/BigQuery, cloud infra. Fastest-growing role in data (34% YoY job growth in 2025). High H-1B sponsorship rates. Companies: Uber, Stripe, startups.', match: 85 },
+  { title: 'ML Engineer', salary: '$110K–$140K (entry) · $150K–$200K+ (mid)', desc: 'Model deployment, MLOps, PyTorch/TensorFlow, feature stores, LLM fine-tuning. Competitive but premium salaries. Requires strong coding + systems thinking. Companies: Google, Amazon, AI startups.', match: 70 },
+  { title: 'Analytics Engineer', salary: '$85K–$110K (entry) · $115K–$145K (mid)', desc: 'The overlap of DE + DA — dbt, SQL, data modeling, semantic layers. Emerged 2021–2022 and now one of the most-hired roles in 2025. Ideal if you love clean data + business context. Companies: dbt Labs, Notion, Airbnb.', match: 88 },
+  { title: 'BI Developer', salary: '$75K–$100K (entry) · $100K–$130K (mid)', desc: 'Tableau, Power BI, Looker, data warehouse design, dashboard strategy. Lower technical ceiling but steady demand in enterprise. Companies: consulting firms, healthcare, finance, retail.', match: 80 },
+];
+
+function showTab(name) {
+  ['roadmap','projects','roles'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach((btn, i) => {
+    btn.classList.toggle('active', ['roadmap','projects','roles'][i] === name);
+  });
+}
+
+function renderPhases() {
+  const container = document.getElementById('phases');
+  phases.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'phase';
+    const skillsHtml = Object.entries(p.tracks).map(([group, data]) => `
+      <div class="skill-col">
+        <h4>${group}</h4>
+        ${data.skills.map(s => `<span class="skill-pill ${data.hot.includes(s) ? 'hot' : ''}">${s}</span>`).join('')}
+      </div>
+    `).join('');
+    const tagColors = {
+      success: { bg: '#28a745', color: 'white' },
+      info: { bg: '#007bff', color: 'white' },
+      warning: { bg: '#ffc107', color: 'black' },
+      danger: { bg: '#dc3545', color: 'white' }
+    };
+    const tagStyle = tagColors[p.tagColor] || { bg: '#6c757d', color: 'white' };
+    div.innerHTML = `
+      <div class="phase-header" onclick="togglePhase('${p.id}')">
+        <div class="phase-dot" style="background:${p.color}"></div>
+        <div class="phase-title">${p.title}</div>
+        <span class="skill-pill" style="font-size:11px;padding:3px 8px;margin:0;background:${tagStyle.bg};color:${tagStyle.color};border-color:transparent">${p.tag}</span>
+        <span class="phase-arrow" id="arr-${p.id}">▶</span>
+      </div>
+      <div class="phase-body" id="body-${p.id}">
+        <div class="skill-grid">${skillsHtml}</div>
+        <div class="tip-box">${p.tip}</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+  togglePhase('p1');
+}
+
+function togglePhase(id) {
+  const body = document.getElementById('body-'+id);
+  const arr = document.getElementById('arr-'+id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arr.classList.toggle('open', !isOpen);
+}
+
+function renderProjects() {
+  const c = document.getElementById('projects-list');
+  c.innerHTML = '<p style="font-size:14px;color:#666;margin-bottom:20px;line-height:1.6">Build these 4 projects over your final two semesters. Each one maps to a real hiring signal companies look for. Push everything to GitHub with clear READMEs and a live demo link where possible.</p>';
+  projects.forEach((p, i) => {
+    c.innerHTML += `<div class="project-card">
+      <h5>${i+1}. ${p.title}</h5>
+      <p style="margin-bottom:10px">${p.desc}</p>
+      ${p.tags.map(t => `<span class="skill-pill core" style="font-size:11px;padding:2px 8px">${t}</span>`).join('')}
+    </div>`;
+  });
+}
+
+function renderRoles() {
+  const c = document.getElementById('roles-list');
+  c.innerHTML = '<p style="font-size:14px;color:#666;margin-bottom:20px;line-height:1.6">Salaries reflect 2025–26 US market rates. Match score is based on your MSIS background + this roadmap\'s skill coverage. All roles have active H-1B sponsorship pathways at major employers.</p>';
+  roles.forEach(r => {
+    c.innerHTML += `<div class="role-card">
+      <h5>${r.title} <span style="font-size:12px;color:#999;font-weight:400">— ${Math.round(r.match)}% roadmap match</span></h5>
+      <div class="progress-bar"><div class="progress-fill" style="width:${r.match}%;background:#28a745"></div></div>
+      <div class="salary">${r.salary}</div>
+      <p>${r.desc}</p>
+    </div>`;
+  });
+  c.innerHTML += `<div class="tip-box" style="margin-top:15px"><b>TTU MSIS advantage:</b> Leverage your university's career center and alumni network in the Dallas–Fort Worth corridor — one of the top 3 US data hiring markets. Texas has no state income tax, making $95K here equivalent to ~$110K in California after tax.</div>`;
+}
+
+renderPhases();
+renderProjects();
+renderRoles();
+</script>
