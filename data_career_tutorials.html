@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Career — Tutorial Resource Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ──────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0B0F1A;
+  --bg2:#111827;
+  --bg3:#1a2235;
+  --bg4:#1f2d45;
+  --surface:#192033;
+  --surface2:#1e2840;
+  --border:#ffffff0f;
+  --border2:#ffffff18;
+  --border3:#ffffff28;
+  --text:#e8edf5;
+  --text2:#a0aec0;
+  --text3:#5a6a82;
+  --accent:#4F8EF7;
+  --accent2:#6aa3ff;
+  --accent-bg:#4F8EF714;
+  --accent-border:#4F8EF730;
+  --green:#34d399;
+  --green-bg:#34d39912;
+  --green-border:#34d39930;
+  --amber:#fbbf24;
+  --amber-bg:#fbbf2412;
+  --amber-border:#fbbf2430;
+  --red:#f87171;
+  --red-bg:#f8717112;
+  --red-border:#f8717130;
+  --purple:#a78bfa;
+  --purple-bg:#a78bfa12;
+  --purple-border:#a78bfa30;
+  --pink:#f472b6;
+  --pink-bg:#f472b612;
+  --teal:#2dd4bf;
+  --teal-bg:#2dd4bf12;
+  --teal-border:#2dd4bf30;
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --radius:10px;
+  --radius-lg:16px;
+  --radius-xl:22px;
+  --shadow:0 4px 24px #00000040;
+  --shadow-sm:0 2px 8px #00000030;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;font-size:15px}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border3);border-radius:3px}
+
+/* ── Background grid ────────────────────────────────────── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;z-index:0
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
+.page{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 24px 80px}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.hero{padding:60px 0 40px;border-bottom:1px solid var(--border2);margin-bottom:40px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
+.hero-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--font-display);font-size:clamp(32px,5vw,54px);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#fff;margin-bottom:14px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:16px;color:var(--text2);max-width:600px;line-height:1.75;margin-bottom:28px}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap}
+.meta-pill{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--text3)}
+.meta-pill svg{width:15px;height:15px;opacity:.6}
+
+/* ── Stats bar ──────────────────────────────────────────── */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:36px}
+.stat-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:18px 20px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat-card:nth-child(1)::before{background:linear-gradient(90deg,var(--accent),var(--teal))}
+.stat-card:nth-child(2)::before{background:linear-gradient(90deg,var(--green),var(--teal))}
+.stat-card:nth-child(3)::before{background:linear-gradient(90deg,var(--red),var(--pink))}
+.stat-card:nth-child(4)::before{background:linear-gradient(90deg,var(--purple),var(--accent))}
+.stat-n{font-family:var(--font-display);font-size:32px;font-weight:800;color:#fff;line-height:1}
+.stat-l{font-size:12px;color:var(--text3);margin-top:5px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── Controls ───────────────────────────────────────────── */
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.search-wrap{position:relative;flex:1;min-width:200px;max-width:340px}
+.search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--text3);pointer-events:none}
+.search-wrap input{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:10px 14px 10px 38px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;transition:border-color .2s}
+.search-wrap input::placeholder{color:var(--text3)}
+.search-wrap input:focus{border-color:var(--accent-border);background:var(--surface2)}
+
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+.chip{padding:7px 15px;border-radius:100px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text3);transition:all .2s;font-family:var(--font-body);letter-spacing:.02em}
+.chip:hover{border-color:var(--border3);color:var(--text2);background:var(--surface)}
+.chip.active{background:var(--accent-bg);color:var(--accent);border-color:var(--accent-border)}
+.chip.active[data-p="free"]{background:var(--green-bg);color:var(--green);border-color:var(--green-border)}
+.chip.active[data-p="youtube"]{background:var(--red-bg);color:var(--red);border-color:var(--red-border)}
+.chip.active[data-p="book"]{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border)}
+
+.nav-button{padding:10px 20px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;border:1px solid var(--border2);background:var(--surface);color:var(--text2);transition:all .2s;font-family:var(--font-body);margin-top:16px}
+.nav-button:hover{border-color:var(--border3);color:var(--text);background:var(--surface2)}
+
+/* ── Phase blocks ───────────────────────────────────────── */
+.phase-block{margin-bottom:12px;border:1px solid var(--border2);border-radius:var(--radius-xl);overflow:hidden;transition:border-color .2s}
+.phase-block:hover{border-color:var(--border3)}
+.phase-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none;background:var(--surface)}
+.phase-header:hover{background:var(--surface2)}
+.phase-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.phase-title{font-family:var(--font-display);font-size:15px;font-weight:700;flex:1;letter-spacing:-.01em}
+.phase-timing{font-size:11px;font-weight:500;padding:3px 11px;border-radius:100px;letter-spacing:.04em;text-transform:uppercase}
+.phase-chevron{width:18px;height:18px;color:var(--text3);transition:transform .25s;flex-shrink:0}
+.phase-chevron.open{transform:rotate(90deg)}
+.phase-body{display:none;padding:20px}
+.phase-body.open{display:block;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Tool sections ──────────────────────────────────────── */
+.tool-section{margin-bottom:24px}
+.tool-section:last-child{margin-bottom:0}
+.tool-label{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tool-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+
+/* ── Resource cards ─────────────────────────────────────── */
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:16px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s,transform .15s,box-shadow .2s;cursor:default}
+.card:hover{border-color:var(--border3);transform:translateY(-2px);box-shadow:var(--shadow)}
+.card-head{display:flex;gap:12px;align-items:flex-start}
+.card-icon{width:38px;height:38px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-icon svg{width:18px;height:18px}
+.card-name{font-size:13px;font-weight:500;color:#fff;line-height:1.4;font-family:var(--font-display)}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.tag{font-size:10px;font-weight:600;padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em}
+.tag-free{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.tag-youtube{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.tag-udemy{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.tag-book{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border)}
+.tag-coursera{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border)}
+.tag-official{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-border)}
+.tag-gold{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.65}
+.verdict{font-size:11px;font-weight:500;padding:6px 11px;border-radius:var(--radius);display:flex;align-items:center;gap:6px}
+.verdict svg{width:12px;height:12px;flex-shrink:0}
+.verdict.gold{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border)}
+.verdict.silver{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent-border)}
+.card-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--accent);text-decoration:none;margin-top:auto;padding-top:4px;border-top:1px solid var(--border);transition:color .15s}
+.card-link:hover{color:var(--accent2)}
+.card-link svg{width:12px;height:12px}
+
+/* ── Empty state ─────────────────────────────────────────── */
+.empty{padding:48px;text-align:center;color:var(--text3)}
+.empty svg{width:32px;height:32px;margin:0 auto 12px;display:block;opacity:.4}
+.empty p{font-size:14px}
+
+/* ── Footer note ─────────────────────────────────────────── */
+.footer-note{margin-top:48px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-xl);padding:28px 32px}
+.footer-note h3{font-family:var(--font-display);font-size:15px;font-weight:700;color:#fff;margin-bottom:16px}
+.footer-tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.tip{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px 16px}
+.tip-num{font-family:var(--font-mono);font-size:11px;color:var(--accent);margin-bottom:6px}
+.tip-text{font-size:13px;color:var(--text2);line-height:1.65}
+.tip-text strong{color:var(--text);font-weight:500}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media(max-width:640px){
+  .page{padding:0 16px 60px}
+  .hero{padding:40px 0 28px}
+  .hero h1{font-size:28px}
+  .cards-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-eyebrow"><span></span>MSIS · Texas Tech University</div>
+    <h1>Data Career<br><em>Tutorial Guide</em></h1>
+    <p>Industry-curated resources for every skill on your roadmap. Filtered by platform, rated by practitioners, linked directly.</p>
+    <button class="nav-button" onclick="window.location.href='data_career_roadmap.html'">← Back to Roadmap</button>
+    <div class="hero-meta">
+      <span class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        6 learning phases
+      </span>
+      <span class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Updated May 2026
+      </span>
+      <span class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Coursera &amp; Udemy premium included
+      </span>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="search" placeholder="Search technology or resource…" oninput="render()">
+    </div>
+  </div>
+  <div class="filter-row" id="filter-row"></div>
+
+  <!-- Content -->
+  <main id="content"></main>
+
+  <!-- Footer tips -->
+  <div class="footer-note">
+    <h3>Where to start this week</h3>
+    <div class="footer-tips">
+      <div class="tip"><div class="tip-num">DAY 1</div><div class="tip-text"><strong>DataLemur</strong> — create an account and solve one SQL problem. Start easy. Build the habit now.</div></div>
+      <div class="tip"><div class="tip-num">DAY 2</div><div class="tip-text"><strong>StatQuest YouTube</strong> — watch the "Linear Regression" and "A/B Testing" playlists. Referenced in virtually every DA interview.</div></div>
+      <div class="tip"><div class="tip-num">DAY 3</div><div class="tip-text"><strong>dbt Learn</strong> — sign up free and complete the "dbt Fundamentals" course. #1 rising skill in DE job postings.</div></div>
+      <div class="tip"><div class="tip-num">WEEK 1</div><div class="tip-text"><strong>Tableau Public</strong> — publish one dashboard on a public dataset. Recruiters see this directly on your LinkedIn profile.</div></div>
+      <div class="tip"><div class="tip-num">ONGOING</div><div class="tip-text"><strong>Andrej Karpathy</strong> — "Neural Networks: Zero to Hero" series. Watch one video per week alongside your coursework.</div></div>
+      <div class="tip"><div class="tip-num">LIBRARY</div><div class="tip-text">Check your <strong>TTU library for O'Reilly access</strong> — free access to Géron, McKinney, and Kleppmann books saves ~$150.</div></div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+const PHASES = [
+  {
+    phase:"Phase 1: Foundation", timing:"Summer — Now",
+    dot:"#34d399", timingBg:"rgba(52,211,153,.12)", timingColor:"#34d399",
+    resources:[
+      {tool:"Advanced SQL",cards:[
+        {title:"Mode Analytics SQL Tutorial",platform:"free",desc:"The gold standard for SQL learning — used for onboarding at hundreds of companies. Covers window functions, CTEs, subqueries, and query optimization with real datasets.",link:"https://mode.com/sql-tutorial/",verdict:"gold",verdictText:"#1 industry pick — start here"},
+        {title:"DataLemur — SQL Interview Questions",platform:"free",desc:"Built by ex-Meta data engineers. 200+ real SQL problems asked at Amazon, Google, and Meta. The single best tool for interview-ready SQL practice.",link:"https://datalemur.com/",verdict:"gold",verdictText:"Best for interview-ready SQL practice"},
+        {title:"The Complete SQL Bootcamp — Jose Portilla",platform:"udemy",desc:"Best-selling Udemy SQL course. 9 hours, PostgreSQL-based, clean teaching style. Use your premium subscription for this one.",link:"https://www.udemy.com/course/the-complete-sql-bootcamp/",verdict:"silver",verdictText:"Best Udemy option for structured SQL"},
+      ]},
+      {tool:"Python & Pandas",cards:[
+        {title:"Python for Data Analysis — Wes McKinney",platform:"book",desc:"Written by the Pandas creator. The definitive reference — chapters 5–12 are essential reading. Senior engineers still cite this in interviews. Free Jupyter notebooks on GitHub.",link:"https://wesmckinney.com/book/",verdict:"gold",verdictText:"Written by the Pandas creator — non-negotiable"},
+        {title:"Kaggle Learn — Pandas Micro-Course",platform:"free",desc:"Free, interactive, 4-hour course. Exercises run entirely in-browser. Fastest path to Pandas muscle memory.",link:"https://www.kaggle.com/learn/pandas",verdict:"silver",verdictText:"Fastest hands-on Pandas practice"},
+        {title:"Corey Schafer — Python YouTube Series",platform:"youtube",desc:"Widely considered the best free Python YouTube series. Covers OOP, decorators, file handling — 2M+ subscribers. Start with the Object-Oriented Programming playlist.",link:"https://www.youtube.com/@coreyms",verdict:"silver",verdictText:"Best free Python fundamentals on YouTube"},
+      ]},
+      {tool:"Git & GitHub",cards:[
+        {title:"Pro Git Book (free online)",platform:"free",desc:"The official Git book, completely free at git-scm.com. Chapters 2–3 cover 90% of daily use. Chapters 6–7 cover advanced workflows and rebasing.",link:"https://git-scm.com/book/en/v2",verdict:"gold",verdictText:"Official, free, exhaustive"},
+        {title:"GitHub Skills — Official Interactive Labs",platform:"free",desc:"GitHub's own interactive learning platform. Courses run in real repos with bots guiding you. Covers branching, pull requests, merge conflicts, and Actions.",link:"https://skills.github.com/",verdict:"silver",verdictText:"Hands-on practice in real GitHub repos"},
+      ]},
+      {tool:"Cloud Basics (AWS / Azure / GCP)",cards:[
+        {title:"AWS Skill Builder — Cloud Practitioner Essentials",platform:"free",desc:"Official AWS free training. 6 hours, directly aligned to the CLF-C02 exam. No fluff — built by AWS trainers. The right starting point before any cloud cert.",link:"https://aws.amazon.com/training/learn-about/cloud-practitioner/",verdict:"gold",verdictText:"Free, official, and exam-ready"},
+        {title:"AWS Cloud Practitioner — Stephane Maarek",platform:"udemy",desc:"Best-selling AWS course on Udemy with 700K+ students. Maarek is the top AWS instructor on the platform. Combines theory with excellent practice tests.",link:"https://www.udemy.com/course/aws-certified-cloud-practitioner-new/",verdict:"silver",verdictText:"Top AWS instructor — use your Udemy premium"},
+      ]},
+    ]
+  },
+  {
+    phase:"Phase 2: Analytics & BI", timing:"Summer — Now",
+    dot:"#4F8EF7", timingBg:"rgba(79,142,247,.12)", timingColor:"#4F8EF7",
+    resources:[
+      {tool:"Tableau",cards:[
+        {title:"Tableau Public Free Training Library",platform:"free",desc:"Tableau's own e-learning library with 70+ free courses. 'Tableau Fundamentals' and 'Visual Analytics Best Practices' are required. Leads directly to the free Tableau Desktop Specialist cert.",link:"https://www.tableau.com/learn/training",verdict:"gold",verdictText:"Official and free — start here before Udemy"},
+        {title:"Tableau 2024 A-Z — Kirill Eremenko",platform:"udemy",desc:"Most popular Tableau course on Udemy with 300K+ students. Hands-on with 25 real-world datasets. Best structured option for going deep on Tableau quickly.",link:"https://www.udemy.com/course/tableau10/",verdict:"silver",verdictText:"Best structured Udemy Tableau course"},
+      ]},
+      {tool:"Power BI",cards:[
+        {title:"Microsoft Learn — Power BI (PL-300 Path)",platform:"free",desc:"Microsoft's official free learning path. The 'Data Analyst Associate' track is 10 hours and covers everything for the PL-300 cert. Always current — updated by Microsoft's own team.",link:"https://learn.microsoft.com/en-us/training/powerplatform/power-bi",verdict:"gold",verdictText:"Free official path — most up-to-date"},
+        {title:"Maven Analytics — Power BI Desktop",platform:"udemy",desc:"Maven Analytics is the gold standard for BI on Udemy. Real business cases, DAX deep-dives, and data modeling walkthroughs. Far better than generic intro courses.",link:"https://www.udemy.com/course/microsoft-power-bi-up-running-with-power-bi-desktop/",verdict:"silver",verdictText:"Best Udemy Power BI — use your premium"},
+      ]},
+      {tool:"Statistics & A/B Testing",cards:[
+        {title:"StatQuest with Josh Starmer — YouTube",platform:"youtube",desc:"The single best statistics resource on the internet. Josh covers regression, p-values, hypothesis testing, and ML algorithms with clear visuals. Used by PhDs and beginners. Subscribe immediately.",link:"https://www.youtube.com/@statquest",verdict:"gold",verdictText:"Best statistics educator on the internet"},
+        {title:"Trustworthy Online Controlled Experiments (Book)",platform:"book",desc:"The A/B testing bible. Written by data scientists from Microsoft, LinkedIn, and Airbnb. Cited in data science interviews at top companies. Read Part I cover-to-cover.",link:"https://www.cambridge.org/core/books/trustworthy-online-controlled-experiments/D97B26382EB0EB2DC2019A7A7B518F59",verdict:"gold",verdictText:"Industry bible for A/B testing"},
+        {title:"Statistics for Data Science — Jose Portilla",platform:"udemy",desc:"Most practical stats course for data roles on Udemy. Covers all concepts tested in interviews: confidence intervals, t-tests, ANOVA, and regression in Python.",link:"https://www.udemy.com/course/statistics-for-data-science-and-business-analysis/",verdict:"silver",verdictText:"Interview-focused stats on Udemy"},
+      ]},
+    ]
+  },
+  {
+    phase:"Phase 3: Data Engineering", timing:"Semester 3",
+    dot:"#a78bfa", timingBg:"rgba(167,139,250,.12)", timingColor:"#a78bfa",
+    resources:[
+      {tool:"Apache Airflow",cards:[
+        {title:"Marc Lamberti — Complete Airflow Guide",platform:"udemy",desc:"Marc Lamberti is THE Airflow expert — he's a co-founder at Astronomer, the company behind Airflow. This is the most credible Airflow course available anywhere, period.",link:"https://www.udemy.com/course/the-complete-hands-on-course-to-master-apache-airflow/",verdict:"gold",verdictText:"Written by Airflow's own co-founder"},
+        {title:"Astronomer Academy (free)",platform:"free",desc:"Free learning platform from the company that maintains Airflow. Covers Airflow 2.x, TaskFlow API, and Kubernetes executor. Official and always current — use alongside Lamberti's course.",link:"https://academy.astronomer.io/",verdict:"silver",verdictText:"Free official Airflow certification prep"},
+      ]},
+      {tool:"dbt (data build tool)",cards:[
+        {title:"dbt Learn — Official Free Courses",platform:"free",desc:"The only resource you need to start dbt. Built by dbt Labs, covers fundamentals through advanced modeling. Free, self-paced, and leads directly to the Analytics Engineer certification. No other resource compares.",link:"https://learn.getdbt.com/",verdict:"gold",verdictText:"Non-negotiable — dbt's own free platform"},
+        {title:"dbt Official Documentation",platform:"free",desc:"After completing dbt Learn, the official docs are your daily reference. Best-written technical documentation in the data engineering space. Includes community best practices.",link:"https://docs.getdbt.com/",verdict:"silver",verdictText:"Best-written docs in the data space"},
+      ]},
+      {tool:"Apache Spark & PySpark",cards:[
+        {title:"Learning Spark, 2nd Edition — O'Reilly",platform:"book",desc:"The definitive Spark book, written by engineers at Databricks — Spark's creators. Covers RDDs, DataFrames, Structured Streaming, and Delta Lake. Required reading for any DE role.",link:"https://www.oreilly.com/library/view/learning-spark-2nd/9781492050032/",verdict:"gold",verdictText:"Written by Databricks — Spark's creators"},
+        {title:"Databricks Academy — Apache Spark",platform:"free",desc:"Databricks offers free self-paced courses including 'Apache Spark Programming with Databricks'. Directly tied to the Databricks Associate certification exam.",link:"https://www.databricks.com/learn/training/catalog",verdict:"gold",verdictText:"Free + directly tied to cert exam"},
+        {title:"Frank Kane — Taming Big Data with Spark",platform:"udemy",desc:"Frank Kane (ex-Amazon) makes Spark very approachable for Python developers. Best Udemy option for PySpark. Recommended if coming from a Pandas background.",link:"https://www.udemy.com/course/taming-big-data-with-apache-spark-hands-on/",verdict:"silver",verdictText:"Most accessible PySpark on Udemy"},
+      ]},
+      {tool:"Snowflake",cards:[
+        {title:"Snowflake Hands-On Quickstarts (free)",platform:"free",desc:"Snowflake's official free labs. 'Getting Started with Snowflake' covers 80% of what you need for the SnowPro Core exam. Run entirely in a free trial account — no setup required.",link:"https://quickstarts.snowflake.com/",verdict:"gold",verdictText:"Official free labs — best Snowflake start"},
+        {title:"SnowPro Core Certification Prep — Udemy",platform:"udemy",desc:"Best Udemy prep course for the SnowPro Core exam. Regularly updated. Practice exams closely match real exam difficulty and question style.",link:"https://www.udemy.com/course/snowflake-snowpro-core-certification-course-practice-tests/",verdict:"silver",verdictText:"Best SnowPro exam prep on Udemy"},
+      ]},
+      {tool:"Docker",cards:[
+        {title:"TechWorld with Nana — Docker Full Course",platform:"youtube",desc:"Nana is the best DevOps educator on YouTube. Her free Docker course is cleaner than most paid courses. Covers containers, images, volumes, networking, and docker-compose end-to-end.",link:"https://www.youtube.com/@TechWorldwithNana",verdict:"gold",verdictText:"Best free Docker content anywhere"},
+        {title:"Docker Official Docs + Play-with-Docker",platform:"free",desc:"Docker's official 'Getting Started' guide is excellent and interactive. Play-with-Docker lets you run containers in the browser — no installation needed to practice.",link:"https://docs.docker.com/get-started/",verdict:"silver",verdictText:"Interactive browser sandbox included"},
+      ]},
+    ]
+  },
+  {
+    phase:"Phase 4: Machine Learning", timing:"Semester 3",
+    dot:"#fb923c", timingBg:"rgba(251,146,60,.12)", timingColor:"#fb923c",
+    resources:[
+      {tool:"Scikit-learn & ML Fundamentals",cards:[
+        {title:"Hands-On ML — Aurélien Géron (O'Reilly)",platform:"book",desc:"The most-cited ML book in industry. Covers scikit-learn, XGBoost, neural nets, and deployment end-to-end. Every ML engineer you interview with has read this. Free Jupyter notebooks on GitHub.",link:"https://github.com/ageron/handson-ml3",verdict:"gold",verdictText:"The ML book — read before anything else"},
+        {title:"fast.ai — Practical Deep Learning for Coders",platform:"free",desc:"Jeremy Howard's free course teaches ML top-down — results first, theory later. Incredibly practical. Used as supplementary material at Stanford. Covers tabular, vision, and NLP.",link:"https://course.fast.ai/",verdict:"gold",verdictText:"Best free ML course — Stanford-level quality"},
+      ]},
+      {tool:"XGBoost & Gradient Boosting",cards:[
+        {title:"StatQuest — XGBoost Video Series",platform:"youtube",desc:"Josh Starmer's 4-part XGBoost series is the clearest technical explanation of gradient boosting anywhere. Watch all four before touching Kaggle competitions.",link:"https://www.youtube.com/watch?v=OtD8wVaFm6E",verdict:"gold",verdictText:"Clearest XGBoost explanation on the internet"},
+        {title:"Kaggle Competitions (hands-on practice)",platform:"free",desc:"The real way to master XGBoost is competition practice. Start with 'Titanic', move to 'House Prices', then join tabular playground competitions. Kaggle notebooks show winning solutions.",link:"https://www.kaggle.com/competitions",verdict:"silver",verdictText:"Real-world practice — what employers want to see"},
+      ]},
+      {tool:"PyTorch & Deep Learning",cards:[
+        {title:"Neural Networks: Zero to Hero — Andrej Karpathy",platform:"youtube",desc:"Made by the ex-OpenAI/Tesla director. Builds a GPT from scratch across 8 videos. The most influential DL teaching series of 2023–24. Required viewing for any ML or AI role.",link:"https://www.youtube.com/@AndrejKarpathy",verdict:"gold",verdictText:"Made by ex-OpenAI director — legendary series"},
+        {title:"PyTorch Official Tutorials",platform:"free",desc:"Official PyTorch tutorials are excellent and regularly updated. 'Learn the Basics' + 'Introduction to PyTorch' covers everything you need for junior ML engineering roles.",link:"https://pytorch.org/tutorials/",verdict:"silver",verdictText:"Official, free, always up-to-date"},
+      ]},
+      {tool:"MLOps & MLflow",cards:[
+        {title:"Made With ML — Goku Mohandas",platform:"free",desc:"The most respected free MLOps curriculum online. Covers MLflow, feature stores, model deployment, and CI/CD for ML pipelines. Used by Google and Meta employees for internal upskilling.",link:"https://madewithml.com/",verdict:"gold",verdictText:"Most respected free MLOps curriculum"},
+        {title:"MLflow Official Docs & Tutorials",platform:"free",desc:"MLflow's official tutorials are short and highly practical. The Tracking, Projects, and Models guides cover 90% of what you'll use in production roles.",link:"https://mlflow.org/docs/latest/getting-started/",verdict:"silver",verdictText:"Official docs — best quick reference"},
+      ]},
+    ]
+  },
+  {
+    phase:"Phase 5: GenAI & LLMs", timing:"Semester 4",
+    dot:"#f472b6", timingBg:"rgba(244,114,182,.12)", timingColor:"#f472b6",
+    resources:[
+      {tool:"LangChain & RAG Pipelines",cards:[
+        {title:"DeepLearning.AI Short Courses — Andrew Ng",platform:"free",desc:"Andrew Ng's free AI short courses are the industry standard. 'LangChain for LLM App Dev', 'Building Systems with ChatGPT', and 'LangChain Chat with Your Data' are each 1–2 hours and essential.",link:"https://learn.deeplearning.ai/",verdict:"gold",verdictText:"Andrew Ng, free, and industry-essential"},
+        {title:"LangChain Official Docs & Cookbook",platform:"free",desc:"LangChain's official docs and cookbook are well-maintained with working code examples. The Tutorials section covers RAG, agents, and chains with real implementations.",link:"https://python.langchain.com/docs/tutorials/",verdict:"silver",verdictText:"Official docs with runnable code examples"},
+      ]},
+      {tool:"Vector Databases & Embeddings",cards:[
+        {title:"DeepLearning.AI — Advanced RAG Techniques",platform:"free",desc:"Free course covering advanced RAG with vector stores. Topics: chunking strategies, reranking, hybrid search. The field moves fast — this course keeps you current with 2025 practices.",link:"https://learn.deeplearning.ai/",verdict:"gold",verdictText:"Free, current, from Andrew Ng's team"},
+        {title:"Pinecone Learning Center",platform:"free",desc:"Pinecone's own free learning center covers vector databases, embeddings, and semantic search exhaustively. Platform-independent content despite being Pinecone's site.",link:"https://www.pinecone.io/learn/",verdict:"silver",verdictText:"Best free deep-dive into vector databases"},
+      ]},
+      {tool:"Prompt Engineering",cards:[
+        {title:"Anthropic Prompt Engineering Guide",platform:"free",desc:"Anthropic's official guide to prompt engineering — more rigorous than OpenAI's equivalent. Covers chain-of-thought, few-shot prompting, system prompts, and evaluation frameworks.",link:"https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",verdict:"gold",verdictText:"Most rigorous free prompt engineering guide"},
+        {title:"Prompt Engineering Guide — DAIR.AI",platform:"free",desc:"Community-maintained, comprehensive, and widely cited in research papers. Covers all major techniques including CoT, RAG, ReAct, and Tree-of-Thought with citations.",link:"https://www.promptingguide.ai/",verdict:"silver",verdictText:"Research-backed, community maintained"},
+      ]},
+    ]
+  },
+  {
+    phase:"Phase 6: Job Readiness", timing:"Final Stretch",
+    dot:"#94a3b8", timingBg:"rgba(148,163,184,.12)", timingColor:"#94a3b8",
+    resources:[
+      {tool:"SQL Interview Prep",cards:[
+        {title:"DataLemur — Real Company Interview Qs",platform:"free",desc:"Built specifically from real FAANG interview questions. Problems tagged by company (Amazon, Meta, Google, Microsoft). Difficulty ratings match actual interview levels.",link:"https://datalemur.com/",verdict:"gold",verdictText:"Real interview questions — best SQL prep"},
+        {title:"LeetCode Database (Hard-level)",platform:"free",desc:"LeetCode's database problems are still used in interviews. Focus on Hard-level window function and multi-table join problems — these appear most frequently.",link:"https://leetcode.com/problemset/database/",verdict:"silver",verdictText:"Widely used in FAANG interview prep"},
+      ]},
+      {tool:"Python & Coding Interviews",cards:[
+        {title:"Ace the Data Science Interview (Book)",platform:"book",desc:"The most interview-specific book for data roles. Covers SQL, statistics, ML, product sense, and case studies. Written by ex-FAANG interviewers. Widely recommended on r/datascience.",link:"https://www.acethedatascienceinterview.com/",verdict:"gold",verdictText:"Written by ex-FAANG interviewers"},
+        {title:"LeetCode — Medium Python (Array & Hash Map)",platform:"free",desc:"Focus on array/string manipulation, hash maps, and sliding window patterns — these are the most common patterns in data role interviews, not hard algorithms.",link:"https://leetcode.com/",verdict:"silver",verdictText:"Most common patterns for data role interviews"},
+      ]},
+      {tool:"System Design for Data",cards:[
+        {title:"Designing Data-Intensive Applications — Kleppmann",platform:"book",desc:"Martin Kleppmann's masterpiece. Covers distributed systems, databases, and streaming pipelines. The bible for data engineering system design interviews. Every senior DE has read this.",link:"https://dataintensive.net/",verdict:"gold",verdictText:"The data engineering system design bible"},
+        {title:"ByteByteGo — System Design Newsletter",platform:"free",desc:"Alex Xu's free newsletter. Data pipeline and warehouse design examples are directly relevant to DE and senior DA interviews. Visual, concise, and practical.",link:"https://blog.bytebytego.com/",verdict:"silver",verdictText:"Best free visual system design explainer"},
+      ]},
+    ]
+  },
+];
+
+const PLATFORMS=[
+  {key:"All",label:"All Resources"},
+  {key:"free",label:"Free"},
+  {key:"youtube",label:"YouTube"},
+  {key:"udemy",label:"Udemy"},
+  {key:"book",label:"Books"},
+  {key:"coursera",label:"Coursera"},
+];
+
+const PLATFORM_ICONS={
+  free:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  youtube:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>',
+  udemy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.9V12c0 5.05-3.41 9.76-9 11-5.59-1.24-9-5.95-9-11V6.9L12 2z"/></svg>',
+  book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  coursera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>',
+  official:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+};
+const VERDICT_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+
+let activeFilter="All", openStates={};
+PHASES.forEach(p=>openStates[p.phase]=true);
+
+function tagHTML(p){
+  const labels={free:"Free",youtube:"YouTube",udemy:"Udemy",book:"Book",coursera:"Coursera",official:"Official"};
+  return `<span class="tag tag-${p}">${labels[p]||p}</span>`;
+}
+
+function buildStats(){
+  let total=0,free=0,yt=0,books=0;
+  PHASES.forEach(ph=>ph.resources.forEach(t=>t.cards.forEach(r=>{
+    total++;
+    if(r.platform==="free"||r.platform==="official")free++;
+    if(r.platform==="youtube")yt++;
+    if(r.platform==="book")books++;
+  })));
+  document.getElementById("stats-bar").innerHTML=[
+    {n:total,l:"Total Resources",i:0},
+    {n:free,l:"Completely Free",i:1},
+    {n:yt,l:"YouTube Videos",i:2},
+    {n:books,l:"Must-Read Books",i:3},
+  ].map(({n,l})=>`<div class="stat-card"><div class="stat-n">${n}</div><div class="stat-l">${l}</div></div>`).join("");
+}
+
+function buildFilters(){
+  document.getElementById("filter-row").innerHTML=PLATFORMS.map(({key,label})=>`
+    <button class="chip${key===activeFilter?" active":""}" data-p="${key.toLowerCase()}" onclick="setFilter('${key}')">${label}</button>
+  `).join("");
+}
+
+function setFilter(f){activeFilter=f;render();}
+window.setFilter=setFilter;
+
+function togglePhase(phase){
+  openStates[phase]=!openStates[phase];
+  const body=document.getElementById("pb-"+encodeURIComponent(phase));
+  const chev=document.getElementById("chev-"+encodeURIComponent(phase));
+  if(body)body.className="phase-body"+(openStates[phase]?" open":"");
+  if(chev)chev.className="phase-chevron"+(openStates[phase]?" open":"");
+}
+window.togglePhase=togglePhase;
+
+function render(){
+  buildFilters();
+  const q=(document.getElementById("search").value||"").toLowerCase();
+  let html="";
+  PHASES.forEach(ph=>{
+    const matchTools=ph.resources.map(tool=>{
+      const mc=tool.cards.filter(r=>{
+        const matchQ=!q||tool.tool.toLowerCase().includes(q)||r.title.toLowerCase().includes(q)||r.desc.toLowerCase().includes(q)||r.platform.toLowerCase().includes(q);
+        const matchP=activeFilter==="All"||r.platform===activeFilter.toLowerCase();
+        return matchQ&&matchP;
+      });
+      return mc.length?{...tool,cards:mc}:null;
+    }).filter(Boolean);
+    if(!matchTools.length)return;
+    const key=encodeURIComponent(ph.phase);
+    const isOpen=openStates[ph.phase]!==false;
+    html+=`
+    <div class="phase-block">
+      <div class="phase-header" onclick="togglePhase('${ph.phase.replace(/'/g,"\\'")}')">
+        <div class="phase-dot" style="background:${ph.dot}"></div>
+        <div class="phase-title" style="color:${ph.dot}">${ph.phase}</div>
+        <span class="phase-timing" style="background:${ph.timingBg};color:${ph.timingColor}">${ph.timing}</span>
+        <svg id="chev-${key}" class="phase-chevron${isOpen?" open":""}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div id="pb-${key}" class="phase-body${isOpen?" open":""}">
+        ${matchTools.map(tool=>`
+          <div class="tool-section">
+            <div class="tool-label">${tool.tool}</div>
+            <div class="cards-grid">
+              ${tool.cards.map(r=>`
+                <div class="card">
+                  <div class="card-head">
+                    <div class="card-icon" style="background:${ph.timingBg}">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="${ph.dot}" stroke-width="2" width="18" height="18">${(PLATFORM_ICONS[r.platform]||PLATFORM_ICONS.official).replace(/<svg[^>]*>/,"")}</svg>
+                    </div>
+                    <div>
+                      <div class="card-name">${r.title}</div>
+                      <div class="card-tags">${tagHTML(r.platform)}${r.verdict==="gold"?'<span class="tag tag-gold">Industry pick</span>':""}</div>
+                    </div>
+                  </div>
+                  <div class="card-desc">${r.desc}</div>
+                  <div class="verdict ${r.verdict}">${VERDICT_ICON}${r.verdictText}</div>
+                  <a class="card-link" href="${r.link}" target="_blank" rel="noopener">
+                    Open resource
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  });
+  document.getElementById("content").innerHTML=html||`<div class="empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><p>No resources match your filters.</p></div>`;
+}
+
+buildStats();
+render();
+</script>
+</body>
+</html>
