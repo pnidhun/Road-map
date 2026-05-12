@@ -66,6 +66,23 @@
       color: #667eea;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
+    .nav-button {
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      margin-top: 10px;
+    }
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
     .content {
       background: white;
       border-radius: 20px;
@@ -282,6 +299,7 @@
     <div class="header">
       <h1>Data Career Roadmap</h1>
       <p>Your personalized guide to becoming a data professional</p>
+      <button class="nav-button" onclick="window.location.href='data_career_tutorials.html'">View Tutorials</button>
     </div>
 
     <div class="tabs">
